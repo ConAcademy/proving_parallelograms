@@ -35,11 +35,17 @@ class App {
         this.points = [];
         this.draggedPoint = null;
 
+        // Resize first so initPoints uses the correct canvas dimensions
+        // We need to ensure draw() doesn't crash on empty points during this first resize
+        this.resize();
+
         // Initialize points in a random quadrilateral shape (not a parallelogram initially)
         this.initPoints();
 
-        this.resize();
         window.addEventListener('resize', () => this.resize());
+
+        // Explicit draw needed since resize() call above happened before points existed (or we rely on subsequent draw)
+        this.draw();
 
         // Mouse Events
         this.canvas.addEventListener('mousedown', this.handleStart.bind(this));
@@ -172,6 +178,8 @@ class App {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.drawGrid();
+
+        if (this.points.length === 0) return;
 
         const [A, B, C, D] = this.points;
 
