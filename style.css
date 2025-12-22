@@ -57,7 +57,8 @@ body {
     display: flex;
     gap: 1.5rem;
     flex: 1;
-    min-height: 0; /* Important for scroll */
+    min-height: 0;
+    /* Important for scroll */
 }
 
 .canvas-container {
@@ -233,21 +234,42 @@ canvas {
 }
 
 @keyframes popIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 @media (max-width: 900px) {
     .main-content {
         flex-direction: column;
+        overflow: hidden;
+        /* Prevent body scroll if we want app-feel */
     }
-    
+
+    .canvas-container {
+        flex: 0 0 50vh;
+        /* Fixed height, half screen */
+        height: 50vh;
+        border-radius: 1rem 1rem 0 0;
+    }
+
     .sidebar {
         width: 100%;
+        flex: 1;
+        /* Take remaining space */
+        min-height: 0;
+        /* Allow shrinking */
         height: auto;
     }
-    
-    .canvas-container {
-        height: 50vh;
+
+    .panel {
+        border-radius: 0 0 1rem 1rem;
+        border-top: none;
     }
 }
