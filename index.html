@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proving Parallelograms Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <h1>Proving Parallelograms</h1>
+            <p>Drag the vertices to explore the properties.</p>
+        </header>
+        
+        <main class="main-content">
+            <div class="canvas-container">
+                <canvas id="geometryCanvas"></canvas>
+                <div class="canvas-controls">
+                    <button id="resetBtn" class="btn secondary">Reset Shape</button>
+                    <button id="snapBtn" class="btn primary">Snap to Parallelogram</button>
+                </div>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="panel verification-panel">
+                    <h2>Theorems Checker</h2>
+                    <ul id="proofList" class="proof-list">
+                        <li class="proof-item" id="proof-sides-parallel">
+                            <span class="status-icon"></span>
+                            <div class="proof-content">
+                                <h3>Parallel Sides</h3>
+                                <p>Both pairs of opposite sides are parallel</p>
+                                <div class="stats">
+                                    <span id="slope-AB-CD">mAB: 0, mCD: 0</span>
+                                    <span id="slope-BC-DA">mBC: 0, mDA: 0</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="proof-item" id="proof-sides-congruent">
+                            <span class="status-icon"></span>
+                            <div class="proof-content">
+                                <h3>Congruent Sides</h3>
+                                <p>Both pairs of opposite sides are congruent</p>
+                                <div class="stats">
+                                    <span id="len-AB-CD">AB: 0, CD: 0</span>
+                                    <span id="len-BC-DA">BC: 0, DA: 0</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="proof-item" id="proof-angles-congruent">
+                            <span class="status-icon"></span>
+                            <div class="proof-content">
+                                <h3>Congruent Angles</h3>
+                                <p>Both pairs of opposite angles are congruent</p>
+                                <div class="stats">
+                                    <span id="angle-A-C">∠A: 0°, ∠C: 0°</span>
+                                    <span id="angle-B-D">∠B: 0°, ∠D: 0°</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="proof-item" id="proof-diagonals">
+                            <span class="status-icon"></span>
+                            <div class="proof-content">
+                                <h3>Diagonals Bisect</h3>
+                                <p>Diagonals bi-sect each other</p>
+                                <div class="stats">
+                                    <span id="mid-AC-BD">Midpoints match? No</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="proof-item" id="proof-one-pair">
+                            <span class="status-icon"></span>
+                            <div class="proof-content">
+                                <h3>One Pair</h3>
+                                <p>One pair of opposite sides is both parallel and congruent</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div id="successMessage" class="success-message hidden">
+                        It's a Parallelogram!
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
