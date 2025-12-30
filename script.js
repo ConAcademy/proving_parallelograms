@@ -437,7 +437,15 @@ class App {
         const c2 = checkItem('proof-sides-congruent', ab_cd_eq && bc_da_eq);
         const c3 = checkItem('proof-angles-congruent', a_c_eq && b_d_eq);
         const c4 = checkItem('proof-diagonals', diags_bisect);
-        const c5 = checkItem('proof-one-pair', (ab_cd_par && ab_cd_eq) || (bc_da_par && bc_da_eq));
+        const isVectorEq = (p1, p2, q1, q2) => {
+            const dx1 = p2.x - p1.x;
+            const dy1 = p2.y - p1.y;
+            const dx2 = q2.x - q1.x;
+            const dy2 = q2.y - q1.y;
+            return Math.abs(dx1 - dx2) < EPS_DIST && Math.abs(dy1 - dy2) < EPS_DIST;
+        };
+
+        const c5 = checkItem('proof-one-pair', isVectorEq(A, B, D, C) || isVectorEq(B, C, A, D));
 
         // Global Success
         const anySuccess = c1 || c2 || c3 || c4 || c5;
