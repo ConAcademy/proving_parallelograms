@@ -2,6 +2,11 @@
 
 A dynamic, interactive educational tool designed to help Geometry students explore and understand the properties required to prove that a quadrilateral is a parallelogram.
 
+You can use it live here:
+
+  * https://conacademy.github.io/proving_parallelograms/
+
+
 ## Overview
 
 This web-based application allows students to manipulate the vertices of a quadrilateral in real-time. As they manipulate the shape, the application continuously calculates slopes, side lengths, and angles to verify if the shape meets specific geometric conditions (theorems) that prove it is a parallelogram.
