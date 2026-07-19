@@ -360,6 +360,31 @@ class App {
         C.y = B.y + D.y - A.y;
     }
 
+    isConvex(points) {
+        let signs = [];
+        const n = points.length;
+        for (let i = 0; i < n; i++) {
+            const p1 = points[i];
+            const p2 = points[(i + 1) % n];
+            const p3 = points[(i + 2) % n];
+
+            // Vector p1->p2
+            const dx1 = p2.x - p1.x;
+            const dy1 = p2.y - p1.y;
+            // Vector p2->p3
+            const dx2 = p3.x - p2.x;
+            const dy2 = p3.y - p2.y;
+
+            // Cross product 2D (z-component)
+            const cross = dx1 * dy2 - dy1 * dx2;
+            signs.push(cross);
+        }
+
+        const allPos = signs.every(s => s >= 0);
+        const allNeg = signs.every(s => s <= 0);
+        return allPos || allNeg;
+    }
+
     checkProofs() {
         const [A, B, C, D] = this.points;
 
@@ -425,6 +450,12 @@ class App {
 
         document.getElementById('mid-AC-BD').textContent = `Distance between midpoints: ${this.dist(midAC, midBD).toFixed(1)}`;
 
+        // Update Coordinates Panel
+        document.getElementById('coord-A').textContent = `A: (${A.x}, ${A.y})`;
+        document.getElementById('coord-B').textContent = `B: (${B.x}, ${B.y})`;
+        document.getElementById('coord-C').textContent = `C: (${C.x}, ${C.y})`;
+        document.getElementById('coord-D').textContent = `D: (${D.x}, ${D.y})`;
+
         // List Checks
         const checkItem = (id, condition) => {
             const el = document.getElementById(id);
@@ -433,9 +464,11 @@ class App {
             return condition;
         };
 
+        const isPolyConvex = this.isConvex(this.points);
+
         const c1 = checkItem('proof-sides-parallel', ab_cd_par && bc_da_par);
-        const c2 = checkItem('proof-sides-congruent', ab_cd_eq && bc_da_eq);
-        const c3 = checkItem('proof-angles-congruent', a_c_eq && b_d_eq);
+        const c2 = checkItem('proof-sides-congruent', ab_cd_eq && bc_da_eq && isPolyConvex);
+        const c3 = checkItem('proof-angles-congruent', a_c_eq && b_d_eq && isPolyConvex);
         const c4 = checkItem('proof-diagonals', diags_bisect);
         const isVectorEq = (p1, p2, q1, q2) => {
             const dx1 = p2.x - p1.x;

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="app-container">
         <header class="app-header">
             <h1>Proving Parallelograms</h1>
             <p>Drag the vertices to explore the properties.</p>
         </header>
-        
+
         <main class="main-content">
             <div class="canvas-container">
                 <canvas id="geometryCanvas"></canvas>
@@ -23,8 +25,18 @@
                     <button id="resetBtn" class="btn secondary">Reset Shape</button>
                     <button id="snapBtn" class="btn primary">Snap to Parallelogram</button>
                 </div>
+
+                <div class="panel coordinates-panel">
+                    <h3>Vertices</h3>
+                    <div class="coords-grid">
+                        <span id="coord-A">A: (0, 0)</span>
+                        <span id="coord-B">B: (0, 0)</span>
+                        <span id="coord-C">C: (0, 0)</span>
+                        <span id="coord-D">D: (0, 0)</span>
+                    </div>
+                </div>
             </div>
-            
+
             <aside class="sidebar">
                 <div class="panel verification-panel">
                     <h2>Theorems Checker</h2>
@@ -85,8 +97,10 @@
                     </div>
                 </div>
             </aside>
+
         </main>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
